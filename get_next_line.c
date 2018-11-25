@@ -10,4 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 
+int	error(int fd, char **str, char **line)
+{
+	if (fd == -1 || line == NULL)
+		return (-1);
+	if (!str)
+	{
+		str = malloc(sizeof(*str) * (BUFF_SIZE + 1));
+		if (str == NULL)
+			return (-1);
+	}
+	return (0);
+}
+
+
+char	*readline 
+int	get_next_line(int const fd, char **line)
+{
+	static char	*str;
+	int 		i;
+
+	if (error(fd, &str, line) == -1)
+		return (-1);
+	if (*str)
+		ft_strcpy(*line, str);
+	str = readline(str, fd);
+	return (0);
+}
