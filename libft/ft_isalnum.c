@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 11:57:32 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/23 12:34:32 by vlhomme          ###   ########.fr       */
+/*   Created: 2018/11/14 14:56:48 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/11/14 14:57:24 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <stdio.h>
+#include "libft.h"
 
-int main(int argc, char **argv)
+int		ft_isalnum(int c)
 {
-	int		fd;
-	char	**line;
-
-	if (argc < 2)
+	if (ft_isalpha(c) || ft_isdigit(c))
+		return (1);
+	else
 		return (0);
-	line = malloc(sizeof(**line) * 2);
-	fd = open(argv[1], O_RDONLY);
-	get_next_line(fd, line);
-	printf("%s\n", line[0]);
-	free(line);
-	return (0);
 }

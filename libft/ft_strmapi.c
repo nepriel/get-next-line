@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 11:57:32 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/23 12:34:32 by vlhomme          ###   ########.fr       */
+/*   Created: 2018/11/13 14:59:54 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/11/15 11:50:51 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <stdio.h>
+#include "libft.h"
 
-int main(int argc, char **argv)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int		fd;
-	char	**line;
+	int				len;
+	char			*new;
+	unsigned int	i;
 
-	if (argc < 2)
-		return (0);
-	line = malloc(sizeof(**line) * 2);
-	fd = open(argv[1], O_RDONLY);
-	get_next_line(fd, line);
-	printf("%s\n", line[0]);
-	free(line);
-	return (0);
+	new = NULL;
+	if (s)
+	{
+		len = ft_strlen(s);
+		new = (char *)malloc(sizeof(*new) * (len + 1));
+		if (!new)
+			return (NULL);
+		new[len] = '\0';
+		i = 0;
+		while (len--)
+		{
+			new[i] = f(i, s[i]);
+			i++;
+		}
+	}
+	return (new);
 }

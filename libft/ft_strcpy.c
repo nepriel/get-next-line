@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 11:57:32 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/23 12:34:32 by vlhomme          ###   ########.fr       */
+/*   Created: 2018/11/14 11:26:24 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/11/14 11:34:51 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <stdio.h>
+#include "libft.h"
 
-int main(int argc, char **argv)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	int		fd;
-	char	**line;
+	int i;
 
-	if (argc < 2)
-		return (0);
-	line = malloc(sizeof(**line) * 2);
-	fd = open(argv[1], O_RDONLY);
-	get_next_line(fd, line);
-	printf("%s\n", line[0]);
-	free(line);
-	return (0);
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }

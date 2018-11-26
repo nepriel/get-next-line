@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 11:57:32 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/23 12:34:32 by vlhomme          ###   ########.fr       */
+/*   Created: 2018/11/15 09:57:39 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/11/15 11:26:00 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <stdio.h>
+#include "libft.h"
 
-int main(int argc, char **argv)
+void	*ft_memccpy(void *restrict dst, const void *restrict src,
+		int c, size_t n)
 {
-	int		fd;
-	char	**line;
+	unsigned char	*s1;
+	unsigned char	*s2;
+	size_t			i;
 
-	if (argc < 2)
-		return (0);
-	line = malloc(sizeof(**line) * 2);
-	fd = open(argv[1], O_RDONLY);
-	get_next_line(fd, line);
-	printf("%s\n", line[0]);
-	free(line);
-	return (0);
+	i = 0;
+	s1 = (unsigned char *)dst;
+	s2 = (unsigned char *)src;
+	while (i < n)
+	{
+		s1[i] = s2[i];
+		if (s2[i] == (unsigned char)c)
+			return (dst + i + 1);
+		i++;
+	}
+	return (NULL);
 }

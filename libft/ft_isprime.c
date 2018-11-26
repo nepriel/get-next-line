@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isprime.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 11:57:32 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/23 12:34:32 by vlhomme          ###   ########.fr       */
+/*   Created: 2018/11/16 20:35:53 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/11/16 20:45:52 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <stdio.h>
+#include "libft.h"
 
-int main(int argc, char **argv)
+int	ft_isprime(int nb)
 {
-	int		fd;
-	char	**line;
+	int root;
+	int i;
 
-	if (argc < 2)
+	root = ft_sqrrt(nb);
+	if (root >= 2)
+	{
+		i = 2;
+		while (i <= root)
+		{
+			if ((nb % i) == 0)
+				return (0);
+			i++;
+		}
+		return (1);
+	}
+	else if (nb == 2 || nb == 3)
+		return (1);
+	else
 		return (0);
-	line = malloc(sizeof(**line) * 2);
-	fd = open(argv[1], O_RDONLY);
-	get_next_line(fd, line);
-	printf("%s\n", line[0]);
-	free(line);
-	return (0);
 }

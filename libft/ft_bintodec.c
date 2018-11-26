@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bintodec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 11:57:32 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/23 12:34:32 by vlhomme          ###   ########.fr       */
+/*   Created: 2018/11/16 19:53:48 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/11/16 19:55:39 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <stdio.h>
+#include "libft.h"
 
-int main(int argc, char **argv)
+int	ft_bintodec(int nb)
 {
-	int		fd;
-	char	**line;
+	int size;
+	int i;
+	int tmp;
+	int res;
 
-	if (argc < 2)
-		return (0);
-	line = malloc(sizeof(**line) * 2);
-	fd = open(argv[1], O_RDONLY);
-	get_next_line(fd, line);
-	printf("%s\n", line[0]);
-	free(line);
-	return (0);
+	size = 0;
+	res = 0;
+	tmp = nb;
+	while (tmp != 0)
+	{
+		tmp = tmp / 10;
+		size++;
+	}
+	i = 0;
+	while (i < size)
+	{
+		if ((nb % ft_power(10, i + 1)) != 0)
+			res = res + (1 * ft_power(2, i));
+		i++;
+	}
+	return (res);
 }

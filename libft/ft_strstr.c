@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 11:57:32 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/23 12:34:32 by vlhomme          ###   ########.fr       */
+/*   Created: 2018/11/13 16:10:32 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/11/15 11:36:31 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <stdio.h>
+#include "libft.h"
 
-int main(int argc, char **argv)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	int		fd;
-	char	**line;
+	int i;
+	int i2;
 
-	if (argc < 2)
-		return (0);
-	line = malloc(sizeof(**line) * 2);
-	fd = open(argv[1], O_RDONLY);
-	get_next_line(fd, line);
-	printf("%s\n", line[0]);
-	free(line);
-	return (0);
+	i = 0;
+	if (needle[i] == '\0')
+		return ((char*)haystack);
+	while (haystack[i])
+	{
+		i2 = 0;
+		while (needle[i2] == haystack[i + i2])
+		{
+			if (needle[i2 + 1] == '\0')
+				return ((char*)haystack + i);
+			i2++;
+		}
+		i++;
+	}
+	return (NULL);
 }

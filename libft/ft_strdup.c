@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 11:57:32 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/23 12:34:32 by vlhomme          ###   ########.fr       */
+/*   Created: 2018/11/13 11:05:02 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/11/13 11:24:41 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <stdio.h>
+#include "libft.h"
 
-int main(int argc, char **argv)
+char	*ft_strdup(const char *s1)
 {
-	int		fd;
-	char	**line;
+	char	*new;
+	size_t	len;
+	size_t	i;
 
-	if (argc < 2)
-		return (0);
-	line = malloc(sizeof(**line) * 2);
-	fd = open(argv[1], O_RDONLY);
-	get_next_line(fd, line);
-	printf("%s\n", line[0]);
-	free(line);
-	return (0);
+	len = ft_strlen(s1);
+	new = (char *)malloc(sizeof(*s1) * (len + 1));
+	if (new)
+	{
+		i = 0;
+		while (i < len)
+		{
+			new[i] = s1[i];
+			i++;
+		}
+		new[i] = '\0';
+		return (new);
+	}
+	return (NULL);
 }
