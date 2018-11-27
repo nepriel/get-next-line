@@ -6,7 +6,7 @@
 /*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 12:12:25 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/23 12:34:29 by vlhomme          ###   ########.fr       */
+/*   Updated: 2018/11/27 10:02:40 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	checkerror(int fd, char **str, char **line)
 		return (-1);
 	if (!*str)
 	{
-		*str = (char*)malloc(sizeof(char) * (BUFF_SIZE + 1))
+		*str = (char*)malloc(sizeof(char) * (BUFF_SIZE + 1));
 		if (*str == NULL)
 			return (-1);
 	}
