@@ -1,134 +1,94 @@
-NAME = libft.a
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aliandie <aliandie@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2014/11/13 17:14:25 by aliandie          #+#    #+#              #
+#    Updated: 2014/11/21 15:49:28 by aliandie         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-CC = gcc
 
-FLAGS = -Wall -Wextra -Werror
 
-PA = ./
+NAME	= libft.a
 
-SOURCES = \
-		$(PA)ft_lstadd.c \
-		$(PA)ft_bintodec.c \
-		$(PA)ft_epur.c \
-		$(PA)ft_isprime.c \
-		$(PA)ft_power.c \
-		$(PA)ft_show_bit.c \
-		$(PA)ft_sqrrt.c \
-		$(PA)ft_lstdel.c \
-		$(PA)ft_lstdelone.c \
-		$(PA)ft_lstiter.c \
-		$(PA)ft_lstmap.c \
-		$(PA)ft_lstnew.c \
-		$(PA)ft_atoi.c \
-		$(PA)ft_bzero.c \
-		$(PA)ft_isalnum.c \
-		$(PA)ft_isalpha.c \
-		$(PA)ft_isascii.c \
-		$(PA)ft_isdigit.c \
-		$(PA)ft_isprint.c \
-		$(PA)ft_itoa.c \
-		$(PA)ft_memalloc.c \
-		$(PA)ft_memccpy.c \
-		$(PA)ft_memchr.c \
-		$(PA)ft_memcmp.c \
-		$(PA)ft_memcpy.c \
-		$(PA)ft_memdel.c \
-		$(PA)ft_memmove.c \
-		$(PA)ft_memset.c \
-		$(PA)ft_putchar.c \
-		$(PA)ft_putchar_fd.c \
-		$(PA)ft_putendl.c \
-		$(PA)ft_putendl_fd.c \
-		$(PA)ft_putnbr.c \
-		$(PA)ft_putnbr_fd.c \
-		$(PA)ft_putstr.c \
-		$(PA)ft_putstr_fd.c \
-		$(PA)ft_strcat.c \
-		$(PA)ft_strchr.c \
-		$(PA)ft_strclr.c \
-		$(PA)ft_strcmp.c \
-		$(PA)ft_strcpy.c \
-		$(PA)ft_strdel.c \
-		$(PA)ft_strdup.c \
-		$(PA)ft_strequ.c \
-		$(PA)ft_striter.c \
-		$(PA)ft_striteri.c \
-		$(PA)ft_strjoin.c \
-		$(PA)ft_strlcat.c \
-		$(PA)ft_strlen.c \
-		$(PA)ft_strmap.c \
-		$(PA)ft_strmapi.c \
-		$(PA)ft_strncat.c \
-		$(PA)ft_strncmp.c \
-		$(PA)ft_strncpy.c \
-		$(PA)ft_strnequ.c \
-		$(PA)ft_strnew.c \
-		$(PA)ft_strnstr.c \
-		$(PA)ft_strrchr.c \
-		$(PA)ft_strsplit.c \
-		$(PA)ft_strstr.c \
-		$(PA)ft_strsub.c \
-		$(PA)ft_strtrim.c \
-		$(PA)ft_tolower.c \
-		$(PA)ft_toupper.c \
+GCC		= gcc -Wall -Werror -Wextra
 
-HEADERS = libft.h
+SRC		+= ft_atoi.c
+SRC		+= ft_bzero.c
+SRC		+= ft_isalnum.c
+SRC		+= ft_tolower.c
+SRC		+= ft_toupper.c
+SRC		+= ft_memcpy.c
+SRC		+= ft_memdel.c
+SRC		+= ft_memmove.c
+SRC		+= ft_memset.c
+SRC		+= ft_memccpy.c
+SRC		+= ft_memalloc.c
+SRC		+= ft_memchr.c 
+SRC		+= ft_memcmp.c
+SRC		+= ft_putstr_fd.c  
+SRC		+= ft_strlcat.c
+SRC		+= ft_strstr.c
+SRC		+= ft_strcat.c
+SRC		+= ft_strlen.c
+SRC		+= ft_strsub.c
+SRC		+= ft_strchr.c
+SRC		+= ft_strrchr.c
+SRC		+= ft_strmap.c 
+SRC		+= ft_strclr.c 
+SRC		+= ft_strmapi.c
+SRC		+= ft_isalpha.c
+SRC		+= ft_strcmp.c  
+SRC		+= ft_strncat.c 
+SRC		+= ft_isascii.c
+SRC		+= ft_putchar.c
+SRC		+= ft_strcpy.c
+SRC		+= ft_strncmp.c
+SRC		+= ft_isdigit.c
+SRC		+= ft_putchar_fd.c
+SRC		+= ft_strdel.c
+SRC		+= ft_strncpy.c
+SRC		+= ft_isprint.c
+SRC		+= ft_putendl.c
+SRC		+= ft_strdup.c
+SRC		+= ft_strnequ.c
+SRC		+= ft_itoa.c
+SRC		+= ft_putendl_fd.c
+SRC		+= ft_strequ.c
+SRC		+= ft_strnew.c
+SRC		+= ft_putnbr.c
+SRC		+= ft_strtrim.c
+SRC		+= ft_strnstr.c
+SRC		+= ft_putnbr_fd.c
+SRC		+= ft_striter.c
+SRC		+= ft_striteri.c 
+SRC		+= ft_putstr.c
+SRC		+= ft_strjoin.c
+SRC		+= ft_strsplit.c
+SRC 	+= ft_isprint.c
+SRC 	+= ft_isalpha.c 
 
-OBJ = ./*.o
+OBJ		+= $(subst .c,.o,$(SRC))
+
+INC		+= -I includes/
 
 all: $(NAME)
 
-$(NAME):
-	$(CC) $(FLAGS) -c $(SOURCES) -I ./include/
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+$(NAME): $(OBJ)
+	ar rc $@ $^
+	ranlib $@  
+
+%.o: %.c 
+	$(GCC) $(INC) -o $@ -c $< 
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 
-############################## PERSONALIZED STUFF ##############################
-
-ADD: ./src/ft_*/ft_*.c ADD_FILE_TO_LIST
-
-Makef:
-	sed -e '/SOURCES =/,$$d' ./Makefile > ./temp/part1.txt
-	sed -n -e '/HEADERS =/,$$p' ./Makefile > ./temp/part2.txt
-	echo 'SOURCES = \' >> ./temp/part1.txt
-	find . -name 'list' -delete
-	find ./srcs/ft_*/ft_*.c | rev | cut -d '/' -f1 | sed -e 's/_tf/_tf)AP($$/g' | rev >> list
-	sed 's/$$/ NewDelim/' list | sed 's/.c NewDelim/.c \\/g' | sed 's/^/		/' >> ./temp/part1.txt
-	echo '' >> ./temp/part1.txt ; cat ./temp/part2.txt >> ./temp/part1.txt
-	rm -f ./temp/part2.txt
-	mv ./temp/part1.txt ./Makefile
-
-compile:
-	$(CC) $(FLAGS) -L./ -lft -o out main.c -I ./include/ 
-
-run:
-	./out
-
-header:
-	cp ./include/init2.h ./include/initlibft.h
-	cp ./include/initlibft.h ./include/libft.h
-	rm -f ./include/temp.txt
-	cat ./srcs/ft_*/ft_*.c | grep -E "^\w" | sed 's/$$/;/' | sed '/main(/d' >> ./include/temp.txt
-	cat ./include/temp.txt >> ./include/initlibft.h
-	cp include/initlibft.h include/libft.h
-	echo '' >> ./include/libft.h ; echo '#endif' >> ./include/libft.h
-	sed '/static /d' ./include/libft.h > prout
-	mv prout ./include/libft.h
-
-moveproject:
-	rm -rf ~/libft
-	mkdir ~/libft
-	cp -r ./include ~/libft
-	rm ~/libft/include/header.h ; rm ~/libft/include/initlibft.h ; rm ~/libft/include/temp.txt
-	cp -r ./srcs ~/libft
-	cp ~/libft/srcs/ft_*/ft_*.c ~/libft/srcs
-	rm -rf ~/libft/srcs/*/
-	echo "vlhomme" > ~/libft/auteur

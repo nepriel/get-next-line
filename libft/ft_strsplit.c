@@ -3,78 +3,116 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aliandie <aliandie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/14 17:25:58 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/14 17:27:31 by vlhomme          ###   ########.fr       */
+/*   Created: 2014/11/11 15:42:02 by aliandie          #+#    #+#             */
+/*   Updated: 2014/11/19 14:38:59 by aliandie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_cntwrd(char const *s, char c)
+int		ft_cntword(char	const *str, char c)
 {
-	unsigned int	i;
-	int				w;
-	int				m;
+	int		i;
+	int		j;
 
-	w = 0;
 	i = 0;
-	while (s[i] != '\0')
+	j = 0;
+	while (str[i] == c)
+		i++;
+	if (str[i])
+		j++;
+	while (str[i])
 	{
-		m = 0;
-		while (s[i] != c)
+		while (str[i] == c)
 		{
-			m = 1;
-			if (s[i] == '\0')
-				return (w + 1);
 			i++;
+			if (str[i] != c && str[i])
+				j++;
 		}
-		if (m == 1)
-			w++;
 		i++;
 	}
-	return (w);
+	return (j);
 }
 
-static int	ft_untilc(const char *s, char c)
+int		ft_cntl(char const *str, char c, int start)
 {
-	int		len;
+	int		i;
 
-	len = 0;
-	while (*s != c && *s != '\0')
+	i = 0;
+	if (str[start] == '\0')
 	{
-		len++;
-		s++;
+		return (i);
 	}
-	return (len);
+	while (str[start] != c && str[start])
+	{
+		i++;
+		start++;
+	}
+	return (i);
 }
 
-char		**ft_strsplit(char const *s, char c)
+char	*ft_taballoc(char const *src, char c, int start)
 {
-	unsigned int	i;
-	unsigned int	f;
-	int				w;
-	char			**list;
+	int		i;
+	char	*str;
 
+	i = 0;
+	str = (char*)malloc(sizeof(char) * (ft_cntl(src, c, start) + 1));
+	if (str == NULL)
+		return (NULL);
+	while (src[start] && src[start] != c)
+	{
+		str[i] = src[start];
+		i++;
+		start++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+char	**ft_tabfill(char const *s, char c, int j, char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] == c)
+		i++;
+	tab[j] = ft_taballoc(s, c, i);
+	j++;
+	while (s[i])
+	{
+		while (s[i] == c)
+		{
+			i++;
+			if (s[i] != c && s[i])
+			{
+				tab[j] = ft_taballoc(s, c, i);
+				j++;
+			}
+		}
+		i++;
+	}
+	return (tab);
+}
+
+char	**ft_strsplit(char const *s, char c)
+{
+	int		j;
+	char	**tab;
+
+	j = 0;
 	if (s == NULL)
 		return (NULL);
-	if (!(list = (char**)malloc(sizeof(*list) * ft_cntwrd(s, c) + 1)))
+	if (c == '\0')
 		return (NULL);
-	f = 0;
-	w = -1;
-	while (++w < ft_cntwrd(s, c))
-	{
-		i = 0;
-		while (s[i + f] == c)
-			f++;
-		i = ft_untilc(&s[f], c);
-		if (!(list[w] = ft_strnew(i)))
-			return (NULL);
-		if (i > 0)
-			list[w] = ft_strncpy(list[w], &s[f], i);
-		f = f + i;
-	}
-	list[w] = NULL;
-	return (list);
+	tab = (char**)malloc(sizeof(char*) * (ft_cntword(s, c) + 1));
+	if (tab == NULL)
+		return (NULL);
+	tab[ft_cntword(s, c)] = '\0';
+	ft_tabfill(s, c, j, tab);
+	if (tab[0][0] == '\0')
+		tab[0] = NULL;
+	return (tab);
 }

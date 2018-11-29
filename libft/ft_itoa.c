@@ -3,49 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: aliandie <aliandie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 10:49:55 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/16 15:11:18 by vlhomme          ###   ########.fr       */
+/*   Created: 2014/11/12 19:01:30 by aliandie          #+#    #+#             */
+/*   Updated: 2014/11/19 15:59:24 by aliandie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <string.h>
 
-static void	fneg(int *n, int *neg)
+static int			ft_cntsize(int n)
 {
-	if (*n < 0)
+	int		i;
+
+	i = 0;
+	if (n < 0)
+		i++;
+	while (n != 0)
 	{
-		*n = *n * -1;
-		*neg = 1;
+		n = n / 10;
+		i++;
 	}
+	return (i);
 }
 
-char		*ft_itoa(int n)
+char				*ft_itoa(int n)
 {
-	int		len;
-	int		neg;
-	int		tp;
-	char	*s;
+	char	*str;
+	int		j;
+	int		i;
 
+	if (n == 0)
+		return (ft_strdup("0"));
+	j = ft_cntsize(n);
+	i = n;
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	len = (2);
-	tp = n;
-	neg = 0;
-	fneg(&n, &neg);
-	while (tp /= 10)
-		len++;
-	len = len + neg;
-	if (!(s = (char *)malloc(sizeof(*s) * (len))))
+	str = (char*)malloc(sizeof(char) * (j + 1));
+	if (str == NULL)
 		return (NULL);
-	s[--len] = '\0';
-	while (len--)
+	str[j] = '\0';
+	while (j--)
 	{
-		s[len] = n % 10 + '0';
+		if (n < 0)
+			n = -n;
+		str[j] = (n % 10 + '0');
 		n = n / 10;
 	}
-	if (neg)
-		s[0] = '-';
-	return (s);
+	if (i < 0)
+		str[0] = '-';
+	return (str);
 }
