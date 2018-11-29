@@ -3,26 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aliandie <aliandie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/05 12:59:23 by aliandie          #+#    #+#             */
-/*   Updated: 2014/11/13 14:53:05 by aliandie         ###   ########.fr       */
+/*   Created: 2018/11/13 14:37:50 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/11/13 14:43:44 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-void		ft_strclr(char *s)
+void	ft_strclr(char *s)
 {
-	int		i;
+	int i;
 
-	i = 0;
-	if (s != NULL)
+	if (s)
 	{
-		while (s[i] != '\0')
-		{
+		i = ft_strlen(s);
+		while (i--)
 			s[i] = '\0';
-			i++;
-		}
 	}
 }

@@ -3,26 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aliandie <aliandie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/07 13:31:23 by aliandie          #+#    #+#             */
-/*   Updated: 2014/11/13 14:31:30 by aliandie         ###   ########.fr       */
+/*   Created: 2018/11/14 18:38:37 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/11/14 19:27:31 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t				i;
-	unsigned char		*str;
+	unsigned char	chr;
+	unsigned char	*str;
+	size_t			i;
 
-	str = (unsigned	char*)s;
+	str = (unsigned char *)s;
+	chr = (unsigned char)c;
 	i = 0;
 	while (i < n)
 	{
-		if (str[i] == (unsigned char)c)
-			return (&str[i]);
+		if (str[i] == chr)
+			return (str + i);
 		i++;
 	}
 	return (NULL);

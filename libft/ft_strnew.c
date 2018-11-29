@@ -3,32 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aliandie <aliandie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/05 12:41:02 by aliandie          #+#    #+#             */
-/*   Updated: 2014/11/19 14:24:30 by aliandie         ###   ########.fr       */
+/*   Created: 2018/11/13 14:09:31 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/11/15 11:42:51 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
-#include <limits.h>
+#include "libft.h"
 
 char	*ft_strnew(size_t size)
 {
-	size_t	i;
 	char	*str;
 
-	i = 0;
-	if (size == 0 || size == SSIZE_MAX)
-		return (NULL);
-	str = (char*)malloc(sizeof(char) * size + 1);
+	str = (char*)malloc(sizeof(*str) * (size + 1));
 	if (str == NULL)
 		return (NULL);
-	while (i <= size)
-	{
-		str[i] = '\0';
-		i++;
-	}
+	ft_memset(str, (int)'\0', size + 1);
 	return (str);
 }

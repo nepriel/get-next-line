@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aliandie <aliandie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 19:12:56 by aliandie          #+#    #+#             */
-/*   Updated: 2014/11/13 15:13:03 by aliandie         ###   ########.fr       */
+/*   Created: 2018/11/14 11:26:24 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/11/15 11:29:19 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t n)
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	size_t	i;
+	size_t i;
 
 	i = 0;
-	while (i < n && src[i] != '\0')
+	while (src[i] && (i < len))
 	{
 		dst[i] = src[i];
 		i++;
 	}
-	while (i < n)
+	while (i < len)
 	{
 		dst[i] = '\0';
 		i++;

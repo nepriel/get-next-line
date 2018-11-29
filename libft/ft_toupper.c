@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aliandie <aliandie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/03 17:18:20 by aliandie          #+#    #+#             */
-/*   Updated: 2014/11/13 16:03:27 by aliandie         ###   ########.fr       */
+/*   Created: 2018/11/14 15:00:43 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/11/14 15:01:16 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int		ft_toupper(int c)
 {
-	while (c >= 97 && c <= 122)
-	{
-		c = c - 32;
-	}
-	return (c);
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	else
+		return (c);
 }
