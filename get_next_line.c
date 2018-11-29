@@ -6,7 +6,7 @@
 /*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 14:58:26 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/29 14:58:29 by vlhomme          ###   ########.fr       */
+/*   Updated: 2018/11/29 15:33:42 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int		checkerror(int fd, char **str, char **line)
 {
-	if (fd == -1 || line == NULL)
+	char *buf;
+
+	if (fd < 0 || line == NULL || !(buf = ft_strnew(BUFF_SIZE + 1)) \
+				|| read(fd, buf, 0) == -1)
 		return (-1);
 	if (!*str)
 	{
