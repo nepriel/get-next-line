@@ -6,7 +6,7 @@
 /*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 08:51:46 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/22 13:56:34 by vlhomme          ###   ########.fr       */
+/*   Updated: 2018/12/04 10:33:59 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+char				*ft_strndup(const char *s, size_t n);
 int					ft_sqrrt(int nb);
 void				ft_show_bit(int nb);
 int					ft_bintodec(int nb);

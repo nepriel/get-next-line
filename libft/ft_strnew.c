@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 14:09:31 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/15 11:42:51 by vlhomme          ###   ########.fr       */
+/*   Created: 2018/12/06 17:52:33 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/12/06 17:52:35 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 char	*ft_strnew(size_t size)
 {
-	char	*str;
+	char *start;
 
-	str = (char*)malloc(sizeof(*str) * (size + 1));
-	if (str == NULL)
+	start = (char *)malloc((size + 1) * sizeof(*start));
+	if (!start)
 		return (NULL);
-	ft_memset(str, (int)'\0', size + 1);
-	return (str);
+	ft_bzero(start, size + 1);
+	return (start);
 }

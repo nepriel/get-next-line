@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 16:49:20 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/15 11:33:15 by vlhomme          ###   ########.fr       */
+/*   Created: 2018/12/06 17:52:58 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/12/06 17:53:00 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,14 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int		i;
-	char	a;
+	size_t	i;
 
-	a = (char)c;
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == a)
+		if (s[i] == (char)c)
 			return ((char *)s + i);
 		i++;
 	}
-	if (a == '\0')
-		return ((char *)s + i);
 	return (NULL);
 }

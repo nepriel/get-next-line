@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlhomme <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/23 11:57:32 by vlhomme           #+#    #+#             */
-/*   Updated: 2018/11/29 14:57:18 by vlhomme          ###   ########.fr       */
+/*   Created: 2018/12/06 17:52:16 by vlhomme           #+#    #+#             */
+/*   Updated: 2018/12/06 17:52:18 by vlhomme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <stdio.h>
-#include "get_next_line.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strndup(const char *s1, size_t n)
 {
-	int		fd;
-	char	**line;
-	int		ret;
+	char	*s2;
+	size_t	i;
 
-	if (argc < 1)
-		return (0);
-	line = malloc(sizeof(**line) * 2);
-	fd = open(argv[1], O_RDONLY);
-	while ((ret = get_next_line(fd, line)) != 0)
+	i = 0;
+	if (!(s2 = ft_strnew(n)))
+		return (NULL);
+	while (s1[i] && i < n)
 	{
-		printf("%s\n", line[0]);
+		s2[i] = s1[i];
+		i++;
 	}
-	free(line);
-	return (0);
+	return (s2);
 }
